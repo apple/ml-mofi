@@ -75,9 +75,9 @@ transform = transforms.Compose([
 ])
 def load_image(name):
     img_pil = Image.open(name)
-    return transform(img_pil)
+    return transform(img_pil).unsqueeze(0)
 
-imgs = torch.as_tensor([load_image('poodle.jpg', 'husky.jpg', 'cat.jpg')])
+imgs = torch.cat([load_image('poodle.jpg'), load_image('husky.jpg'), load_image('cat.jpg')], dim=0)
 ```
 
 ### Compute Image Embedding
